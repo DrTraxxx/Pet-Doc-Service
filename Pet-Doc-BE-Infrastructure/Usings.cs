@@ -7,4 +7,7 @@ global using Pet_Doc_BE_Domain.Models;
 global using Pet_Doc_BE_Domain.Models.Doctor;
 global using Pet_Doc_BE_Application.Contracts;
 global using Pet_Doc_BE_Infrastructure.Persistence;
+global using Pet_Doc_BE_Infrastructure.Identity;
+global using Pet_Doc_BE_Infrastructure.Persistence.Initializer;
+global using Pet_Doc_BE_Infrastructure.Repositories;
 global using static Pet_Doc_BE_Domain.Models.ModelConstants.Common;

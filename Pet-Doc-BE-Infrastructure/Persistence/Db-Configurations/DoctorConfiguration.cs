@@ -21,8 +21,14 @@ internal class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
         builder.HasMany(d => d.Certification)
                .WithOne();
 
-        builder.HasMany(d => d.Schedule)
-               .WithOne();
+        builder.OwnsOne(d => d.Schedule , o =>
+        {
+            o.WithOwner();
+            o.Property(o => o.NumberOfWorkingDays);
+            o.Property(o => o.StaringDay);
+            o.Property(o => o.DailySlots);
+            o.Property(o => o.FirstSlot);
+        });
 
         builder.OwnsOne(d => d.Address, o => 
         {

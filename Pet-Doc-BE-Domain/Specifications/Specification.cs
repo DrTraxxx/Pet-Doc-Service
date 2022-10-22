@@ -22,13 +22,13 @@ public abstract class Specification<T>
      => specification.ToExpression();
 
 
-    private class BinarySpec : Specification<T>
+    private sealed class BinarySpec : Specification<T>
     {
         private Specification<T> _left;
         private Specification<T> _right;
         private bool _andOpertator;
 
-        public BinarySpec(Specification<T> left, Specification<T> right, bool andOperator)
+        internal BinarySpec(Specification<T> left, Specification<T> right, bool andOperator)
         {
             _left = left;
             _right = right;

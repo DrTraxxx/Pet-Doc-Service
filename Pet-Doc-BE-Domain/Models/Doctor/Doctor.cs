@@ -1,6 +1,6 @@
 ﻿namespace Pet_Doc_BE_Domain.Models.Doctor;
 
-public class Doctor : Entity<int> , IRoot
+public sealed class Doctor : Entity<int> , IRoot
 {
     internal Doctor(
         string name,
@@ -8,7 +8,7 @@ public class Doctor : Entity<int> , IRoot
         Address address,
         HashSet<Appointment> appointments,
         HashSet<Certification> certification,
-        HashSet<WorkingDay> schedule)
+        Schedule schedule)
     {
         Name = name;
         Specialty = specialty;
@@ -32,7 +32,7 @@ public class Doctor : Entity<int> , IRoot
     public string Name { get; init; }
     public Speciality Specialty { get; init; }
     public Address Address { get; init; } 
-    public HashSet<WorkingDay> Schedule { get; init; }
+    public Schedule Schedule { get; init; }
     public HashSet<Certification> Certification { get; init; }
     public HashSet<Appointment> Appointments { get; init; }
 }

@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Pet_Doc_BE_Infrastructure.Identity;
-using Pet_Doc_BE_Infrastructure.Persistence.Initializer;
-using Pet_Doc_BE_Infrastructure.Repositories;
 
 public static class InfrastructureConfiguration
 {
@@ -28,7 +25,7 @@ public static class InfrastructureConfiguration
         => services.AddTransient<IInitializer,PetDocDbInitializer>();
 
     private static IServiceCollection AddDocRepository(this IServiceCollection services)
-        => services.AddTransient<IDocsRepository, DocsRepository>();
+        => services.AddTransient<IRepository<Doctor>, DocsRepository>();
  
     private static IServiceCollection AddIdentity(this IServiceCollection services , IConfiguration cfg)
     {
