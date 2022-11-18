@@ -6,3 +6,5 @@ global using System.Threading.Tasks;
 global using Pet_Doc_BE_Domain.Models;
 global using Pet_Doc_BE_Domain.Models.Doctor;
 global using Pet_Doc_BE_Domain.Comon;
+global using Pet_Doc_BE_Application.Contracts;
+global using Pet_Doc_BE_Domain.Specifications.Doctors;

@@ -1,6 +1,6 @@
-﻿using Pet_Doc_BE_Domain.Specifications;
+﻿namespace Pet_Doc_BE_Application.Contracts;
 
-namespace Pet_Doc_BE_Application.Contracts;
+using Pet_Doc_BE_Domain.Specifications;
 
 public interface IRepository<TEntity> 
     where TEntity : IRoot

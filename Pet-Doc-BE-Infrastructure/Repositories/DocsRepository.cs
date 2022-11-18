@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pet_Doc_BE_Application.Contracts;
 using Pet_Doc_BE_Domain.Specifications;
+using System.Collections.Immutable;
 
 namespace Pet_Doc_BE_Infrastructure.Repositories;
 
@@ -19,8 +19,8 @@ internal class DocsRepository : IRepository<Doctor>
             .SingleOrDefaultAsync(specification, cancellationToken: cancellationToken);
 
     public async Task<IReadOnlyCollection<Doctor>> Get(Specification<Doctor> specification = null!, CancellationToken cancellationToken = default)
-     => specification is not null 
-        ? await _context.Doctors.Include(d => d.Specialty).AsSplitQuery().ToArrayAsync() 
+     => specification is null
+        ? await _context.Doctors.Include(d => d.Specialty).AsSplitQuery().ToArrayAsync()
         : await _context.Doctors.Include(d => d.Specialty).AsSplitQuery()
             .Where(specification)
             .ToArrayAsync();

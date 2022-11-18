@@ -43,10 +43,24 @@ public abstract class Specification<T>
             BinaryExpression andExpression = _andOpertator 
                 ? Expression.AndAlso(leftExpression.Body, rightExpression.Body) 
                 : Expression.OrElse(leftExpression.Body, rightExpression.Body);
+            
+            var parameter = Expression.Parameter(typeof(T));
+            andExpression = (BinaryExpression)new ParameterReplacer(parameter).Visit(andExpression);
+            andExpression = andExpression ?? throw new InvalidOperationException("Binary expression cannot be null.");
 
-            return Expression.Lambda<Func<T, bool>>(
-                andExpression, leftExpression.Parameters.Single());
+            return Expression.Lambda<Func<T, bool>>(andExpression, parameter);
         }
+    }
+
+    private class ParameterReplacer : ExpressionVisitor
+    {
+        private readonly ParameterExpression parameter;
+
+        protected override Expression VisitParameter(ParameterExpression node)
+            => base.VisitParameter(this.parameter);
+
+        internal ParameterReplacer(ParameterExpression parameter)
+            => this.parameter = parameter;
     }
 }
 
