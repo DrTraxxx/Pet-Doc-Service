@@ -31,7 +31,7 @@ initializer.Initialize();
 app.MapGet("/docs", async (string city,string speciality,IDoctorFeature doctorFeature) 
     => await doctorFeature.FindDoctors(city,speciality));
 
-//app.MapGet("/docs/{id}", async (int id,IDocsRepository repo) => await repo.GetDocs());
-//app.MapPost("/docs/{id}", async (int id, [FromBody] Appointment appointment,IDocsRepository repo) => await repo.GetDocs());
+app.MapGet("/doc/{name}",async (string name,IDoctorFeature doctorFeature) 
+    => await doctorFeature.GetDoctorDetails(name));
 
 app.Run();
