@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pet_Doc_BE_Domain.Specifications;
-using System.Collections.Immutable;
 
 namespace Pet_Doc_BE_Infrastructure.Repositories;
 
@@ -11,11 +10,10 @@ internal class DocsRepository : IRepository<Doctor>
     public DocsRepository(PetDocDbContext context) => _context = context;
    
     public async Task<Doctor> Find(Specification<Doctor> specification, CancellationToken cancellationToken = default)
-    =>  await _context.Doctors.Include(d => d.Appointments)
-            .AsSplitQuery()
-            .Include(d => d.Specialty)
-            .AsSplitQuery()
-            .Include(d => d.Certification)
+     => await _context.Doctors
+            .Include(d => d.Specialty).AsSplitQuery()
+            .Include(d => d.Appointments)
+            .Include(d => d.Certification).AsSingleQuery()
             .SingleOrDefaultAsync(specification, cancellationToken: cancellationToken);
 
     public async Task<IReadOnlyCollection<Doctor>> Get(Specification<Doctor> specification = null!, CancellationToken cancellationToken = default)

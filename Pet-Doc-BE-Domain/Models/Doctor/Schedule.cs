@@ -2,17 +2,18 @@
 
 public class Schedule
 {
-    internal Schedule(string staringDay, int dailySlots, string firstSlot , int numberOfWorkingDays)
+    internal Schedule(int dailySlots,string firstSlot,string lastSlot , int numberOfWorkingDays)
     {
-        StaringDay = staringDay;
         DailySlots = dailySlots;
         FirstSlot = firstSlot;
+        LastSlot = lastSlot;
         NumberOfWorkingDays = numberOfWorkingDays;
     }
 
-    public string StaringDay { get; init; }
     public string FirstSlot { get; init; }
+    public string LastSlot { get; init; }
     public int NumberOfWorkingDays { get;init; }
     public int DailySlots { get; init; }
+
 }
 

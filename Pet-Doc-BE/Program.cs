@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Pet_Doc_BE_Application;
 using Pet_Doc_BE_Application.Contracts;
 using Pet_Doc_BE_Infrastructure;
@@ -33,5 +32,8 @@ app.MapGet("/docs", async (string city,string speciality,IDoctorFeature doctorFe
 
 app.MapGet("/doc/{name}",async (string name,IDoctorFeature doctorFeature) 
     => await doctorFeature.GetDoctorDetails(name));
+
+app.MapGet("doc/{name}/schadule", async (string name, IDoctorFeature doctorFeature)
+    => await doctorFeature.GetDoctorAppointments(name));
 
 app.Run();

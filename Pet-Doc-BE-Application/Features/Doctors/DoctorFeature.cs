@@ -25,4 +25,14 @@ internal class DoctorFeature : IDoctorFeature
         => (await _repository
         .Find(new DoctorByName(name)))
         .MapTo<DoctorDetails,Doctor>(_mapper);
+
+    public async Task<DoctorAppointments> GetDoctorAppointments(string name)
+    {
+        var doc = await _repository.Find(new DoctorByName(name));
+
+        var test1 = doc.GetDoctorCalendar(DateTime.Now);
+
+        return new();
+    }
+        
 }

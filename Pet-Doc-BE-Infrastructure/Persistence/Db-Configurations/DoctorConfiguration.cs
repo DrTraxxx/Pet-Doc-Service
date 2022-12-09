@@ -25,7 +25,7 @@ internal class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
         {
             o.WithOwner();
             o.Property(o => o.NumberOfWorkingDays);
-            o.Property(o => o.StaringDay);
+            o.Property(o => o.LastSlot);
             o.Property(o => o.DailySlots);
             o.Property(o => o.FirstSlot);
         });

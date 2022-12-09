@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pet_Doc_BE_Infrastructure.Persistence;
 
@@ -11,9 +12,10 @@ using Pet_Doc_BE_Infrastructure.Persistence;
 namespace Pet_Doc_BE_Infrastructure.Migrations
 {
     [DbContext(typeof(PetDocDbContext))]
-    partial class PetDocDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221209123128_AddLastSlot")]
+    partial class AddLastSlot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

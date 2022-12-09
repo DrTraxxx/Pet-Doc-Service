@@ -6,4 +6,5 @@ public interface IDoctorFeature
 {
     Task<IReadOnlyCollection<DoctorOutputModel>> FindDoctors(string city, string speciality);
     Task<DoctorDetails> GetDoctorDetails(string name);
+    Task<DoctorAppointments> GetDoctorAppointments(string name);
 }
