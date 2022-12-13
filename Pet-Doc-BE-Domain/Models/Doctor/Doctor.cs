@@ -38,47 +38,11 @@ public sealed class Doctor : Entity<int> , IRoot
     public HashSet<Certification> Certification { get; init; }
     public HashSet<Appointment> Appointments { get; init; }
 
-    public Calendar GetDoctorCalendar(DateTime startDate)
-    {
-        var test = GetMontlySchedule(startDate);
-
-        return default;
-    }
-
-    public IEnumerable<string> GetDaylySlots()
+    public IEnumerable<string> GetAppointmentHours()
     {
         foreach (int slotIndex in Enumerable.Range(0, Schedule.DailySlots))
             yield return TimeOnly.Parse(Schedule.FirstSlot).AddHours(slotIndex).ToString("HH:mm");
 
-    }
-
-
-    private IEnumerable<WorkDay> GetMontlySchedule(DateTime fromDate)
-    {
-        foreach (int indx in Enumerable.Range(1,30))
-        {
-            var date = fromDate.AddDays(indx);
-
-            if (date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday) continue;
-
-            var scheduleSlots = GetDaylySlots();
-           
-            var daylislots = scheduleSlots
-                .Except(Appointments
-                    .Where(x => x.AppointmentDate.Date.Equals(date.Date))
-                    .Select(x => x.Slot));
-
-            yield return new(date.DayOfWeek.ToString(),date.Date.ToString(),daylislots);
-
-        }
-    }
-
-    private WorkDay GetToday(DateTime startDate)
-    {
-
-        if (startDate.Date == DateTime.Today) return default!;
-
-        return default!;
     }
 }
 
