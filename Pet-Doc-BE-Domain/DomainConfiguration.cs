@@ -14,7 +14,8 @@ public static class DomainConfiguration
         => services.AddTransient<IInitialData<Doctor[]>, DocSeedData>();
 
     private static IServiceCollection AddScheduleGenerator(this IServiceCollection services)
-     => services.AddSingleton<ScheduleService>()
+     => services
+        .AddSingleton<ScheduleService>()
         .AddSingleton<MontlyCalendar>(x =>
             (date, doc) => ScheduleGenerator.Generate(x.GetRequiredService<ScheduleService>(), date, doc));
 

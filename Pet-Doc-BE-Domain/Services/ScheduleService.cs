@@ -1,15 +1,14 @@
 ﻿namespace Pet_Doc_BE_Domain.Services;
 
 using Models.Doctor;
-using Models.Doctor.WorkCalendar;
 
 public sealed class ScheduleService
 {
-    public Calendar CalculateCalendar(DateTime fromDate, Doctor doc)
+    public (WorkDay, IEnumerable<WorkDay>) CalculateCalendar(DateTime fromDate, Doctor doc)
     {
         var schedule = GetMontlySchedule(fromDate, doc);
 
-        return new(schedule.First(), schedule);
+        return (schedule.First(), schedule);
     }
 
     private IEnumerable<WorkDay> GetMontlySchedule(DateTime fromDate,Doctor doc)
@@ -21,7 +20,7 @@ public sealed class ScheduleService
 
             if (date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday) continue;
 
-            var slotsCollection = fromDate.Date != DateTime.Today
+            var slotsCollection = date.Date != DateTime.Today
                 ? slots
                 : GetTodaySlots(slots,TimeOnly.FromDateTime(date),doc);
 

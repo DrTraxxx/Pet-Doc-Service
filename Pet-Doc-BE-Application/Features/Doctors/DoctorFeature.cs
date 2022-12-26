@@ -2,6 +2,7 @@
 
 using AutoMapper;
 using Pet_Doc_BE_Application.Extensions;
+using Pet_Doc_BE_Domain.Models.Doctor;
 using Pet_Doc_BE_Domain.Services;
 
 internal class DoctorFeature : IDoctorFeature
@@ -22,8 +23,7 @@ internal class DoctorFeature : IDoctorFeature
 
     public async Task<IReadOnlyCollection<DoctorOutputModel>> FindDoctors(string city, string speciality)
           => (await _repository
-             .Get(new DoctorByCity(city)
-             .And(new DoctorBySpeciality(speciality))))
+             .Get(new DoctorByCity(city).And(new DoctorBySpeciality(speciality))))
              .Select(d => new DoctorOutputModel(d.Name, d.Specialty.Name, d.Address.City))
              .ToArray();
 
@@ -37,12 +37,9 @@ internal class DoctorFeature : IDoctorFeature
         var doc = await _repository.Find(new DoctorByName(name));
         var date = DateTime.Now;
 
-        var result = _getCalendar(date, doc);
+        (var today,var montlyCalendar ) = _getCalendar(date, doc);
 
-        var montly = result.MontlySchadule.ToArray();
-        var today = result.Today;
-
-        return new();
+        return new(today,montlyCalendar);
     }
         
 }

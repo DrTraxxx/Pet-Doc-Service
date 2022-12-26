@@ -1,7 +1,5 @@
 ﻿namespace Pet_Doc_BE_Domain.Models.Doctor;
 
-using Pet_Doc_BE_Domain.Models.Doctor.WorkCalendar;
-
 public sealed class Doctor : Entity<int> , IRoot
 {
     internal Doctor(

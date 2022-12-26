@@ -1,4 +1,4 @@
-﻿namespace Pet_Doc_BE_Domain.Models.Doctor.WorkCalendar;
+﻿namespace Pet_Doc_BE_Domain.Models.Doctor;
 
 public class WorkDay
 {

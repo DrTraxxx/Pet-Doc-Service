@@ -12,7 +12,7 @@ internal class DocsRepository : IRepository<Doctor>
     public async Task<Doctor> Find(Specification<Doctor> specification, CancellationToken cancellationToken = default)
      => await _context.Doctors
             .Include(d => d.Specialty).AsSplitQuery()
-            .Include(d => d.Appointments)
+            .Include(d => d.Appointments).AsSplitQuery()
             .Include(d => d.Certification).AsSingleQuery()
             .SingleOrDefaultAsync(specification, cancellationToken: cancellationToken);
 
