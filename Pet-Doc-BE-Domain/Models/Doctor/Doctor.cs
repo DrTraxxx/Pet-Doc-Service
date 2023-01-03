@@ -1,6 +1,5 @@
 ﻿namespace Pet_Doc_BE_Domain.Models.Doctor;
 
-using Pet_Doc_BE_Domain.Comon.Validations;
 using Pet_Doc_BE_Domain.Exceptions;
 using Pet_Doc_BE_Domain.Extensions;
 

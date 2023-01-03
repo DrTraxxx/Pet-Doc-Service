@@ -8,3 +8,4 @@ global using Pet_Doc_BE_Domain.Comon;
 global using Pet_Doc_BE_Domain.Models;
 global using Pet_Doc_BE_Domain.Models.Doctor;
 global using static Pet_Doc_BE_Domain.Models.ModelConstants.Common;
+global using static Pet_Doc_BE_Domain.Models.ModelConstants.Validate;
