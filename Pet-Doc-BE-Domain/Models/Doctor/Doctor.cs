@@ -49,10 +49,10 @@ public sealed class Doctor : Entity<int> , IRoot
 
     public void ValidateModel(string name , Speciality specialty, Address address, Schedule schedule)
     {
-        var isNameValid = name.Validate(Validate.ForEmptyString,Validate.ForStringLength);
-        var isSpecialtyValid = specialty.Validate(Validate.ForInvalidObjectState);
-        var isAddressValid = address.Validate(Validate.ForInvalidObjectState);
-        var isScheduleValid = schedule.Validate(Validate.ForInvalidObjectState);
+        var isNameValid = name.Validate(ForEmptyString,ForStringLength);
+        var isSpecialtyValid = specialty.Validate(ForInvalidObjectState);
+        var isAddressValid = address.Validate(ForInvalidObjectState);
+        var isScheduleValid = schedule.Validate(ForInvalidObjectState);
 
         if (!isNameValid || !isSpecialtyValid || !isAddressValid || !isScheduleValid)
             throw  new InvalidDoctorException("Invalid state detected when building model!");
