@@ -13,7 +13,7 @@ public class Schedule
     public string FirstSlot { get; init; }
     public string LastSlot { get; init; }
     public int NumberOfWorkingDays { get;init; }
-    public int DailySlots { get; init; }
+    public int DailySlots { get; init; } 
 
 }
 

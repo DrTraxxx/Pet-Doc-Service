@@ -3,7 +3,7 @@
 using Pet_Doc_BE_Domain.Models.Doctor;
 
 
-//Partial Application implementation to expose CalculateCalendar method but keep the calculation logic in the domain 
+//Partial Application implementation to expose Generate method but keep the calculation logic in the domain 
 
 public delegate (WorkDay, IEnumerable<WorkDay>) MontlyCalendar(DateTime fromDate, Doctor doc);
 
