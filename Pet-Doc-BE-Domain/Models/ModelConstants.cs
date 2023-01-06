@@ -1,5 +1,7 @@
 ﻿namespace Pet_Doc_BE_Domain.Models;
 
+using Pet_Doc_BE_Domain.Specifications.Doctors;
+
 public sealed class ModelConstants
 {
     public sealed class Common
@@ -23,5 +25,5 @@ public sealed class ModelConstants
 
         public static Func<object, bool> ForInvalidObjectState = value => value == default;
 
-    }
+    } 
 }

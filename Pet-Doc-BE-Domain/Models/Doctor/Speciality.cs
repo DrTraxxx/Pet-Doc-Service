@@ -7,14 +7,11 @@ public class Speciality : Entity<int>
 {
 	internal Speciality(string name)
 	{
-		ValidateModel(name);
+		Guard.AgainstModelIncorrectness<InvalidSpecialityException>
+			(name.Validate(ForEmptyString, ForStringLength));
+
         Name = name;
 	}
 	public string Name { get; set; }
 
-	private void ValidateModel(string name)
-	{
-		if (name.Validate(ForEmptyString, ForStringLength))
-			throw new InvalidSpecialityException($"{name} is not valid!");
-	}
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Pet_Doc_BE_Domain.Specifications;
+﻿namespace Pet_Doc_BE_Infrastructure.Repositories;
 
-namespace Pet_Doc_BE_Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Pet_Doc_BE_Domain.Specifications;
 
 internal class DocsRepository : IRepository<Doctor>
 {
@@ -23,9 +23,10 @@ internal class DocsRepository : IRepository<Doctor>
             .Where(specification)
             .ToArrayAsync();
 
-    public Task Save(Doctor entity, CancellationToken cancellationToken = default)
+    public async Task Save(Doctor entity, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        _context.Update(entity);
+        await _context.SaveChangesAsync();
     }
 
     public Task<Doctor> Update(Specification<Doctor> specification, CancellationToken cancellationToken = default)

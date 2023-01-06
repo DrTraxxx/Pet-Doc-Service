@@ -2,5 +2,6 @@
 
 public sealed class InvalidSpecialityException : BaseDomainException
 {
+	public InvalidSpecialityException(){}
     public InvalidSpecialityException(string message) => Error = message;
 }

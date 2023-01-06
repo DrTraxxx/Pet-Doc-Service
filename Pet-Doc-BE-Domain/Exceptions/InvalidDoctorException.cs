@@ -2,5 +2,7 @@
 
 public sealed class InvalidDoctorException : BaseDomainException
 {
+	public InvalidDoctorException() { }
+	
     public InvalidDoctorException(string message) => Error = message; 
 }

@@ -13,7 +13,12 @@ public sealed class Doctor : Entity<int> , IRoot
         HashSet<Certification> certification,
         Schedule schedule)
     {
-        ValidateModel(name, specialty, address, schedule);
+        Guard.AgainstModelIncorrectness<InvalidDoctorException>
+            (name.Validate(ForEmptyString, ForStringLength),
+             specialty.Validate(ForInvalidObjectState),
+             address.Validate(ForInvalidObjectState),
+             schedule.Validate(ForInvalidObjectState)
+            );
 
         Name = name;
         Specialty = specialty;
@@ -45,18 +50,22 @@ public sealed class Doctor : Entity<int> , IRoot
     {
         foreach (int slotIndex in Enumerable.Range(0, Schedule.DailySlots))
             yield return TimeOnly.Parse(Schedule.FirstSlot).AddHours(slotIndex).ToString("HH:mm");
-    }
+    } 
 
-    public void ValidateModel(string name , Speciality specialty, Address address, Schedule schedule)
+    public void AddAppointment(Appointment appointment)
     {
-        var isNameValid = name.Validate(ForEmptyString,ForStringLength);
-        var isSpecialtyValid = specialty.Validate(ForInvalidObjectState);
-        var isAddressValid = address.Validate(ForInvalidObjectState);
-        var isScheduleValid = schedule.Validate(ForInvalidObjectState);
+        Guard.AgainstModelIncorrectness<InvalidAppointmentException>
+            (appointment.Validate(ForInvalidObjectState));
 
-        if (!isNameValid || !isSpecialtyValid || !isAddressValid || !isScheduleValid)
-            throw  new InvalidDoctorException("Invalid state detected when building model!");
+        Appointments.Add(appointment);
     }
+
+    public void CancelAppointment(Appointment appointment)
+        => Appointments.RemoveWhere(a => a.Id == appointment.Id);
+
+
+
+
 }
 
 

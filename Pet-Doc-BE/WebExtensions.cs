@@ -13,7 +13,7 @@
             }
             catch(Exception ex)
             {
-                return Results.Problem("Something went wrong processing the requestse",null,200); 
+                return Results.Problem("Something went wrong processing the request",null,200); 
             }
         }
     }
